@@ -22,7 +22,7 @@ private CloudVendorRepository cloudVendorRepository;
 CloudVendor cloudVendor;
 
 @BeforeEach
-    void setUp() {
+void setUp() {
     cloudVendor = new CloudVendor("1","Amazon","Austin","xxxxx99");
     cloudVendorRepository.save(cloudVendor);
 }
@@ -41,6 +41,11 @@ CloudVendor cloudVendor;
    assertThat(cloudVendorList.get(0).getVendorAddress()).isEqualTo(cloudVendor.getVendorAddress());
     }
 
-
+// Test case failure
+    @Test
+void testFindByVendorName_NotFound(){
+    List<CloudVendor>cloudVendorList = cloudVendorRepository.findByVendorName("Google");
+    assertThat(cloudVendorList.isEmpty()).isTrue();
+}
 
 }
